@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+<body>
+<script type= "text/javascript">
+sessionStorage.setItem("loggedin","yes");
+console.log(sessionStorage.getItem("loggedin"));
+</script>
+
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<script type="text/javascript">
+var show;
+function init(){
+	if (sessionStorage.getItem("loggedin") == 'yes'){
+		username = sessionStorage.getItem("username");
+	document.getElementById("show").innerHTML = "Welcome, " + username + "<br/><a href = \"#\" onclick=\"logMeOut()\";>Log out</a>";
+	}
+	else 
+	{
+	document.getElementById("show").innerHTML = '';	
+	}
+}
+	
+
+
+
+function logMeOut(){
+sessionStorage.setItem("loggedin","no");
+document.getElementById("show").innerHTML = "";
+init();
+}
+
+function login(){
+//text field 2 ways
+var username = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+var gooduser = 'ksecor';
+var goodpass = 'hamilton';
+if (username == gooduser && password == goodpass){
+sessionStorage.setItem("loggedin","yes");
+sessionStorage.setItem("username",username);
+init();
+  }
+}
+</script>
+</head>
+<body onload="init();">
+<p id ="show">
+</p>
+
+<form>
+Username <input type = "text" id = "username" required="required"/><br/>
+Password <input type = "password"  id = "password" required="required"/><br/>
+<input type = "button"  value = "Log In" onclick="return login();"/>
+</form>
+</body>
+</html>
+
+</body>
+</html>
